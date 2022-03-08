@@ -1,4 +1,17 @@
 <?php
+
+$dbHost     = "localhost";
+$dbUsername = "root";
+$dbPassword = Null;
+$dbName     = "crud_test";
+
+//Manual Connect Database
+$con = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+// $con= mysqli_connect($dbHost,$dbUsername,$dbPassword,$dbName ) or die("Error: " . mysqli_error($con));
+// mysqli_query($con, "SET NAMES 'utf8' ");
+// error_reporting( error_reporting() & ~E_NOTICE );
+
+
 /*
  * DB Class
  * This class is used for database related (connect, insert, update, and delete) operations
@@ -7,10 +20,12 @@
  * @license    http://www.codexworld.com/license
  */
 class DB{
+
     private $dbHost     = "localhost";
     private $dbUsername = "root";
-    private $dbPassword = null;
+    private $dbPassword = Null;
     private $dbName     = "crud_test";
+
     
     public function __construct(){
         if(!isset($this->db)){

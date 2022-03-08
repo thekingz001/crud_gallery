@@ -23,7 +23,9 @@ if(!empty($sessData['postData'])){
 // Get image data
 if(!empty($_GET['id'])){
     // Include and initialize DB class
-    require_once 'DB.class.php';
+    //require_once 'DB.class.php';
+    include('DB.class.php'); 
+
     $db = new DB();
     
     $conditions['where'] = array(
@@ -40,6 +42,8 @@ $imgData = !empty($postData)?$postData:$imgData;
 $actionLabel = !empty($_GET['id'])?'Edit':'Add';
 ?>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <!-- Display status message -->
 <?php if(!empty($statusMsg)){ ?>
 <div class="col-xs-12">
@@ -51,19 +55,21 @@ $actionLabel = !empty($_GET['id'])?'Edit':'Add';
     <div class="col-md-6">
         <form method="post" action="postAction.php" enctype="multipart/form-data">
             <div class="form-group">
-                <label>Image</label>
+                <label>รูป</label>
                 <?php if(!empty($imgData['file_name'])){ ?>
                     <img src="uploads/images/<?php echo $imgData['file_name']; ?>">
                 <?php } ?>
                 <input type="file" name="image" class="form-control" >
             </div>
             <div class="form-group">
-                <label>Title</label>
-                <input type="text" name="title" class="form-control" placeholder="Enter title" value="<?php echo !empty($imgData['title'])?$imgData['title']:''; ?>" >
-            </div>
-            <a href="manage.php" class="btn btn-secondary">Back</a>
+                <label>ร้านค้า</label>
+                <input type="text" name="title" class="form-control" placeholder="กรอกฃื่อร้านค้า" value="<?php echo !empty($imgData['title'])?$imgData['title']:''; ?>" >
+            </div> 
+            <input type="submit" name="imgSubmit" class="btn btn-success form-control mt-3" value="ยืนยัน" >
+            <a href="manage.php" class="btn btn-secondary form-control mt-1">กลับ</a>
             <input type="hidden" name="id" value="<?php echo !empty($imgData['id'])?$imgData['id']:''; ?>">
-            <input type="submit" name="imgSubmit" class="btn btn-success" value="SUBMIT">
         </form>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
